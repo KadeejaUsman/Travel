@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+<!-- IMPORTANT:
+
+For simplicity sake, I have uploaded all the related resources of this project, like ( .js files, .css files etc. ) to the BASE location mentioned below. Please visit this URL and then SAVE all these files, to your local folder ( i.e. to the folder containing this html file ) and then REMOVE this BASE tag, for complete LOCAL hosting purposes.
+
+-->
+
+<base href="https://cdn.jsdelivr.net/gh/linuxguist/greviews@main/">
+
+
+<link href='https://fonts.googleapis.com/css?family=Lato:400,500,600,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="style_iv.css">
+
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+
+<style type="text/css">
+
+  .accordion h2 {
+    font: 600 24px 'Lato', sans-serif !important;
+    }
+
+.accordion .pane {
+    font: 400 18px 'Lato', sans-serif !important;
+    }
+
+        .morecontent span {
+            display: none;
+            transition: 0.7s all ease;
+        }
+
+        .textMain .morelink {
+            display: block;
+            color: #fff;
+            margin: 30px 0;
+            width: 75px;
+            font-size: 11px;
+            text-align: center;
+            transition: 0.7s all ease;
+            background: #025487;
+            text-transform: uppercase;
+            color: #ffffff;
+            float: right;
+        }
+
+        .textMain .morelink:hover {
+            color: #fff;
+        }
+
+        .moreellipses {
+            transition: 0.7s all ease;
+        }
+
+</style>
+
+<div class="accordion testimonial">
+
+<h2><a href="javascript:void(0);"> Reviews</a></h2>
+
+<div class="pane">
+
+<div class="lb">
+    <div class="rating-t"><img src="rating-star-yellow.png" alt="Rating"> | <strong>Sushanth</strong></div>
+
+<div class="testi-image dfw-FontResize" style="font-size: 15px;"> <img src="https://i.imgur.com/Vzox3O3.jpg" alt="Testimonial9">
+</div>
+
+    <div class="testi-text"><span class="quote-l"></span>Nice hotels, cab was good driver and guide were very cooperative and gentle. Services of travel agent were totaly satisfactory.All round, a great package deal, especially the VIP Finns pass. Would recommend you to all my family and friends.<span class="quote-r"></span></div>
+</div>
+<div class="db">
+    <div class="rating-t"><img src="rating-star-yellow.png" alt="Rating"> | <strong>Alex Vazquez</strong></div>
+
+<div class="testi-image dfw-FontResize" style="font-size: 15px;"> <img src="https://i.imgur.com/nHZQTnW.jpg" alt="Testimonial9">
+</div>
+
+    <div class="testi-text"><span class="quote-l"></span>We stayed in 3 hotels during our tour, but only one of them offered us all the toiletries, otherwise everything else was good. Our visit to Taj Mahal was memorable.Overall good give spare time for lunch and dinner It's was best<span class="quote-r"></span></div>
+</div>
+<div class="lb">
+    <div class="rating-t"><img src="rating-star-yellow.png" alt="Rating"> | <strong>Stephen Shaw</strong></div>
+
+<div class="testi-image dfw-FontResize" style="font-size: 15px;"> <img src="https://i.imgur.com/zfTioar.jpg" alt="Testimonial9">
+</div>
+
+    <div class="testi-text"><span class="quote-l"></span>Kerela is one of the best God gifted place on earth. It was great experience to visit Kerala. Want to visit Southern part of Kerala..Nice hotels, cab was good driver and guide were very cooperative and gentle.<span class="quote-r"></span></div>
+</div>
+<div class="db">
+    <div class="rating-t"><img src="rating-star-yellow.png" alt="Rating"> | <strong>Robert Kieffer</strong></div>
+
+<div class="testi-image dfw-FontResize" style="font-size: 15px;"> <img src="https://i.imgur.com/UM9OsIB.jpg" alt="Testimonial9">
+</div>
+
+    <div class="testi-text"><span class="quote-l"></span>Overall good give spare time for lunch and dinner It's was best.Thank you travel solutions for the fantastic service everything was made so simple and easy
+Made our holiday so enjoyable definitely be recommending to our family and friends <span class="quote-r"></span></div>
+</div>
+
+                                </div>
+
+                            </div>
+
+
+<script type="text/javascript">
+/* ----- Accordion ----- */
+$(document).ready(function () {
+    var url = (window.location).href;
+    var id = url.substring(url.lastIndexOf('#') + 1);
+    if (id != url) {
+        $(".accordion h2").removeClass('current');
+        $('#' + id).addClass("current");
+        $('#' + id).next(".pane").slideDown('slow');
+    } else {
+
+      $(".pane").slideDown("slow");
+
+    }
+
+    $(".accordion h2").click(function () {
+        $(this).next(".pane").slideToggle("slow").siblings(".pane:visible").slideUp("slow");
+        $(this).toggleClass("current").siblings("h2").removeClass("current");
+        var link = $(this).find('a').attr("href");
+        if (link == "javasrcipt:void(0);") {
+            return false;
+        }
+    });
+});
+</script>
+
+<script>
+        $(document).ready(function () {
+            var showChar = 250;
+            var ellipsestext = "...";
+            var moretext = "Read More";
+            var lesstext = "Show Less";
+            $('.testi-text').each(function () {
+                var content = $(this).html();
+                if (content.length > showChar) {
+                    var c = content.substr(0, showChar);
+                    var h = content.substr(showChar, content.length - showChar);
+                    var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;<\/span><span class="morecontent"><span>' + h + '<\/span>&nbsp;&nbsp;<a href="" class="morelink" aria-label="Know more about Testimonial">' + moretext + '<\/a><\/span>';
+                    $(this).html(html);
+                }
+            });
+            $(".morelink").click(function () {
+                if ($(this).hasClass("less")) {
+                    $(this).removeClass("less");
+                    $(this).html(moretext);
+                }
+                else {
+                    $(this).addClass("less");
+                    $(this).html(lesstext);
+                }
+                $(this).parent().prev().toggle();
+                $(this).prev().toggle();
+                return false;
+            });
+        });
+    </script>
+
+<script type="text/javascript">
+/*
+$(document).ready(function() {
+ $(".accordion h2:first").trigger("click");
+});
+*/
+/*
+$(".accordion h2:first").addClass("active");
+*/
+</script>
+</body>
+</html>
